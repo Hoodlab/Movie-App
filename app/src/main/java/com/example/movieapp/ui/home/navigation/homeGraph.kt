@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.movieapp.ui.home.HomeScreen
 import com.example.movieapp.ui.navigation.MovieNavigationActions
 import com.example.movieapp.ui.navigation.Route
 
@@ -23,7 +24,7 @@ fun NavGraphBuilder.homeGraph(
         composable(route = Route.HomeScreen().route,
             enterTransition = { fadeIn() + scaleIn() },
             exitTransition = { fadeOut() + shrinkOut() }) {
-
+            HomeScreen()
         }
 
 

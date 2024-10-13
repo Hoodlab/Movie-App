@@ -5,6 +5,13 @@ import com.example.movieapp.authentication.data.repositoryImpl.AuthRepositoryImp
 import com.example.movieapp.authentication.data.repositoryImpl.GoogleAuthClientImpl
 import com.example.movieapp.authentication.domain.repository.AuthRepository
 import com.example.movieapp.authentication.domain.repository.GoogleAuthClient
+import com.example.movieapp.movie.data.mapper.ApiMapper
+import com.example.movieapp.movie.data.mapper_impl.ApiMapperImpl
+import com.example.movieapp.movie.data.remote.api.MovieApiService
+import com.example.movieapp.movie.data.remote.models.MovieDto
+import com.example.movieapp.movie.data.repository_impl.MovieRepositoryImpl
+import com.example.movieapp.movie.domain.models.Movie
+import com.example.movieapp.movie.domain.repository.MovieRepository
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import dagger.Module
@@ -16,7 +23,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+object AuthModule {
 
     @Provides
     @Singleton
