@@ -6,11 +6,11 @@ The **Movie App** is an Android application built with
 [Jetpack Compose](https://developer.android.com/jetpack/compose) has several features like discover, explore, and Actor details. With user-friendly browsing features and secure authentication via Firebase and Google Authentication. The app integrates with TheMovieDb API for fetching real-time movie data.
 
 ## Screenshots
-<img src="screenshots/screen_shot_4.png" alt="Login Screen">
-<img src="screenshots/screen_shot_2.png" alt="Home Screen">
-<img src="screenshots/screen_shot_1.png" alt="Detail Screen">
-<img src="screenshots/screen_shot_3.png" alt="Actor Screen">
-<img src="screenshots/screen_shot_5_dark_theme.png" alt="Dark Theme">
+<img src="screenshots/screen_shot_4.png" alt="Login Screen" width=200 height=400>
+<img src="screenshots/screen_shot_2.png" alt="Home Screen" width=200 height=400>
+<img src="screenshots/screen_shot_1.png" alt="Detail Screen" width=200 height=400>
+<img src="screenshots/screen_shot_3.png" alt="Actor Screen" width=200 height=400>
+<img src="screenshots/screen_shot_5_dark_theme.png" alt="Dark Theme" width=200 height=400>
 
 ## Features
 
