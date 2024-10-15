@@ -64,12 +64,13 @@ fun ActorTopContent(modifier: Modifier = Modifier, actor: Actor) {
             placeholder = painterResource(id = R.drawable.bg_image_movie)
         )
         MovieCard(
-            modifier = Modifier.align(Alignment.BottomStart)
+            modifier = Modifier.align(Alignment.BottomStart).padding(defaultPadding)
         ) {
             Text(
                 text = "Top ${actor.popularity} IMDb",
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(itemSpacing)
             )
         }
     }

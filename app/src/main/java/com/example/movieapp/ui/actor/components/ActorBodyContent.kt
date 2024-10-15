@@ -70,17 +70,34 @@ fun ActorBodyContent(modifier: Modifier = Modifier, actor: Actor) {
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(itemSpacing))
-                    Text(text = "Birth place:${actor.placeOfBirth}", modifier = Modifier.padding(bottom = 4.dp))
-                    Text(text = "Birthday:${actor.birthDay}", modifier = Modifier.padding(bottom = 4.dp))
+                    Text(
+                        text = "Birth place: ${actor.placeOfBirth}",
+                        modifier = Modifier.padding(bottom = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium
+
+                    )
+                    Text(
+                        text = "Birthday: ${actor.birthDay}",
+                        modifier = Modifier.padding(bottom = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                     val nameAnnotatedString = buildAnnotatedString {
-                        append("also known as:")
+                        append("Also known as: ")
                         actor.alsoKnownAs.forEach {
                             append(it)
                             append(" • ")
                         }
                     }
-                    Text(text = nameAnnotatedString, modifier = Modifier.padding(bottom = 4.dp))
-                    Text(text = "Known for${actor.knownFor}", modifier = Modifier.padding(bottom = 4.dp))
+                    Text(
+                        text = nameAnnotatedString,
+                        modifier = Modifier.padding(bottom = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        text = "Known for: ${actor.knownFor}",
+                        modifier = Modifier.padding(bottom = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             }
         }

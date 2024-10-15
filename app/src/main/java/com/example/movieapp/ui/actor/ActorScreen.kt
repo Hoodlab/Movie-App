@@ -41,8 +41,8 @@ fun ActorScreen(
                 val topItemHeight = boxHeight * .45f
                 val bodyItemHeight = boxHeight * .55f
                 state.actor?.let {
-                    ActorTopContent(actor = it, modifier = Modifier.height(topItemHeight))
-                    ActorBodyContent(actor = it, modifier = Modifier.height(bodyItemHeight))
+                    ActorTopContent(actor = it, modifier = Modifier.height(topItemHeight).align(Alignment.TopCenter))
+                    ActorBodyContent(actor = it, modifier = Modifier.height(bodyItemHeight).align(Alignment.BottomCenter))
                 }
             }
         }
