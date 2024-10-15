@@ -2,6 +2,7 @@ package com.example.movieapp.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapp.authentication.domain.repository.AuthRepository
 import com.example.movieapp.movie.domain.models.Movie
 import com.example.movieapp.movie.domain.repository.MovieRepository
 import com.example.movieapp.utils.collectAndHandle
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: MovieRepository
+    private val repository: MovieRepository,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
     private val _homeState = MutableStateFlow(HomeState())
     val homeState = _homeState.asStateFlow()
@@ -35,12 +37,14 @@ class HomeViewModel @Inject constructor(
                     it.copy(isLoading = true, error = null)
                 }
             }
-        ) {movies ->
+        ) { movies ->
             _homeState.update {
                 it.copy(isLoading = false, error = null, movies = movies)
             }
         }
     }
+
+    fun logout() = authRepository.signOut()
 
 }
 
