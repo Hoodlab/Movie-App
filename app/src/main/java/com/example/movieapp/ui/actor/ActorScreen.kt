@@ -24,7 +24,7 @@ fun ActorScreen(
     actorViewModel: ActorViewModel = hiltViewModel(),
 ) {
     val state by actorViewModel.actorState.collectAsStateWithLifecycle()
-    Box(modifier = modifier.fillMaxWidth()) {
+    Box(modifier = modifier.fillMaxSize()) {
         AnimatedVisibility(
             state.error != null,
             modifier = Modifier.align(Alignment.TopCenter)
