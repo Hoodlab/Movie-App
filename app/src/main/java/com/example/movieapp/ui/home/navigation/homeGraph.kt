@@ -59,7 +59,7 @@ fun NavGraphBuilder.homeGraph(
             route = Route.ActorScreen().routeWithArgs,
             arguments = listOf(navArgument(name = K.ACTOR_ID) { type = NavType.IntType })
         ) {
-            ActorScreen()
+            ActorScreen(onNavigateBack = {navController.navigateUp()})
         }
     }
 }

@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +26,7 @@ import com.example.movieapp.ui.authentication.components.LoadingView
 fun ActorScreen(
     modifier: Modifier = Modifier,
     actorViewModel: ActorViewModel = hiltViewModel(),
+    onNavigateBack:() -> Unit
 ) {
     val state by actorViewModel.actorState.collectAsStateWithLifecycle()
     Box(modifier = modifier.fillMaxSize()) {
@@ -45,6 +50,9 @@ fun ActorScreen(
                     ActorBodyContent(actor = it, modifier = Modifier.height(bodyItemHeight).align(Alignment.BottomCenter))
                 }
             }
+        }
+        IconButton(onClick = onNavigateBack, modifier = Modifier.align(Alignment.TopStart)) {
+            Icon(imageVector = Icons.AutoMirrored.Default.ArrowBack, contentDescription = "Back")
         }
     }
     LoadingView(isLoading = state.isLoading)
