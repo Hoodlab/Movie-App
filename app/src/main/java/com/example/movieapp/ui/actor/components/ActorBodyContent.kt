@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.example.movieapp.actor_detail.domain.models.Actor
 import com.example.movieapp.ui.authentication.login.defaultPadding
 import com.example.movieapp.ui.authentication.login.itemSpacing
+import com.example.movieapp.ui.components.CollapsibleText
 
 @Composable
 fun ActorBodyContent(modifier: Modifier = Modifier, actor: Actor) {
@@ -58,10 +59,9 @@ fun ActorBodyContent(modifier: Modifier = Modifier, actor: Actor) {
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(itemSpacing))
-                    Text(
+                    CollapsibleText(
                         text = actor.biography,
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold
+                        collapsedMaxLines = 5
                     )
                     Spacer(modifier = Modifier.height(itemSpacing))
                     Text(
