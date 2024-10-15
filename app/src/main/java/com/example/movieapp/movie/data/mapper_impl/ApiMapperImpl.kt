@@ -1,8 +1,8 @@
 package com.example.movieapp.movie.data.mapper_impl
 
+import com.example.movieapp.common.data.ApiMapper
 import com.example.movieapp.movie.data.remote.models.MovieDto
 import com.example.movieapp.movie.domain.models.Movie
-import com.example.movieapp.movie_detail.data.mapper.ApiMapper
 import com.example.movieapp.utils.GenreConstants
 
 class ApiMapperImpl : ApiMapper<List<Movie>, MovieDto> {

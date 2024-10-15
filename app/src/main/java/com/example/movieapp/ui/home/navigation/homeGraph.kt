@@ -11,6 +11,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.example.movieapp.ui.actor.ActorScreen
 import com.example.movieapp.ui.home.HomeScreen
 import com.example.movieapp.ui.movie_detail.MovieDetailScreen
 import com.example.movieapp.ui.navigation.MovieNavigationActions
@@ -49,9 +50,16 @@ fun NavGraphBuilder.homeGraph(
                     navAction.navigateToFilmScreenWithArgs(it)
                 },
                 onActorClick = {
-
+                    navAction.navigateToActorScreenWithArgs(it)
                 },
             )
+        }
+
+        composable(
+            route = Route.ActorScreen().routeWithArgs,
+            arguments = listOf(navArgument(name = K.ACTOR_ID) { type = NavType.IntType })
+        ) {
+            ActorScreen()
         }
     }
 }

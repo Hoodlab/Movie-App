@@ -42,7 +42,7 @@ class MovieNavigationActions(
             popUpTo(navController.graph.findStartDestination().id) { inclusive = false }
         }
     }
-    val navigateToActorScreenWithArgs: (actorId: String) -> Unit = {
+    val navigateToActorScreenWithArgs: (actorId: Int) -> Unit = {
         navController.navigate(
             Route.ActorScreen().getRouteWithArgs(id = it)
         ) {

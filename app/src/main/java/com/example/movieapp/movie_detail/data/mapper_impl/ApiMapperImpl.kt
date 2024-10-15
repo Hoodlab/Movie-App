@@ -1,15 +1,13 @@
 package com.example.movieapp.movie_detail.data.mapper_impl
 
-import com.example.movieapp.movie_detail.data.mapper.ApiMapper
+import com.example.movieapp.common.data.ApiMapper
 import com.example.movieapp.movie_detail.data.remote.models.CastDto
 import com.example.movieapp.movie_detail.data.remote.models.MovieDetailDto
 import com.example.movieapp.movie_detail.domain.models.Cast
 import com.example.movieapp.movie_detail.domain.models.MovieDetail
 import com.example.movieapp.movie_detail.domain.models.Review
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 
 class ApiMovieMapperImpl : ApiMapper<MovieDetail, MovieDetailDto> {
     override fun mapToDomain(apiDto: MovieDetailDto): MovieDetail {

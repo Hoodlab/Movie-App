@@ -1,12 +1,12 @@
 package com.example.movieapp.di
 
+import com.example.movieapp.actor_detail.data.mapper_impl.ActorMapperImpl
+import com.example.movieapp.actor_detail.data.remote.api.ActorApiService
+import com.example.movieapp.actor_detail.data.remote.models.ActorDto
+import com.example.movieapp.actor_detail.data.repository.ActorRepositoryImpl
+import com.example.movieapp.actor_detail.domain.models.Actor
+import com.example.movieapp.actor_detail.domain.repository.ActorRepository
 import com.example.movieapp.common.data.ApiMapper
-import com.example.movieapp.movie.data.mapper_impl.ApiMapperImpl
-import com.example.movieapp.movie.data.remote.api.MovieApiService
-import com.example.movieapp.movie.data.remote.models.MovieDto
-import com.example.movieapp.movie.data.repository_impl.MovieRepositoryImpl
-import com.example.movieapp.movie.domain.models.Movie
-import com.example.movieapp.movie.domain.repository.MovieRepository
 import com.example.movieapp.utils.K
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -18,10 +18,9 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
-object MovieModule {
+object ActorModule {
     private val json = Json {
         coerceInputValues = true
         ignoreUnknownKeys = true
@@ -29,25 +28,25 @@ object MovieModule {
 
     @Provides
     @Singleton
-    fun provideMovieDetailRepository(
-        movieApiService: MovieApiService,
-        mapper: ApiMapper<List<Movie>, MovieDto>
-    ): MovieRepository = MovieRepositoryImpl(
-        movieApiService, mapper
+    fun provideActorRepository(
+        actorApiService: ActorApiService,
+        mapper: ApiMapper<Actor, ActorDto>
+    ): ActorRepository = ActorRepositoryImpl(
+        actorApiService, mapper
     )
 
     @Provides
     @Singleton
-    fun provideMovieDetailMapper(): ApiMapper<List<Movie>, MovieDto> = ApiMapperImpl()
+    fun provideActorMapper(): ApiMapper<Actor, ActorDto> = ActorMapperImpl()
 
     @Provides
     @Singleton
-    fun provideMovieApiService(): MovieApiService {
+    fun provideActorService(): ActorApiService {
         val contentType = "application/json".toMediaType()
         return Retrofit.Builder()
             .baseUrl(K.BASE_URL)
             .addConverterFactory(json.asConverterFactory(contentType))
             .build()
-            .create(MovieApiService::class.java)
+            .create(ActorApiService::class.java)
     }
 }

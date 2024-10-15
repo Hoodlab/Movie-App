@@ -7,7 +7,6 @@ sealed class Route {
         const val NESTED_AUTH_ROUTE = "auth_route"
         const val NESTED_HOME_ROUTE = "home_route"
         const val IS_EMAIL_SENT = "isEmailSent"
-        const val ACTOR_ID = "filmId"
     }
 
     data class LoginScreen(
@@ -33,9 +32,9 @@ sealed class Route {
 
     data class ActorScreen(
         val route: String = "FilmScreen",
-        val routeWithArgs: String = "$route/{$ACTOR_ID}",
+        val routeWithArgs: String = "$route/{${K.ACTOR_ID}}",
     ) : Route() {
-        fun getRouteWithArgs(id: String): String {
+        fun getRouteWithArgs(id: Int): String {
             return "$route/$id"
         }
     }
