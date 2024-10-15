@@ -20,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -70,7 +71,7 @@ fun HomeScreen(
             }
         }
     }
-    Box {
+    Box (modifier){
         AnimatedVisibility(
             state.error != null
         ) {
@@ -84,19 +85,20 @@ fun HomeScreen(
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .zIndex(2f)
+                .padding(horizontal =  itemSpacing)
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.Logout,
                 contentDescription = "logout",
                 modifier = Modifier
-                    .padding( itemSpacing)
+                    .padding(itemSpacing)
                     .clickable {
-                    homeViewModel.logout()
-                }
+                        homeViewModel.logout()
+                    }
             )
         }
         AnimatedVisibility(visible = !state.isLoading) {
-            BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+            BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
                 val boxHeight = maxHeight
                 val topItemHeight = boxHeight * .45f
                 val bodyItemHeight = boxHeight * .55f
