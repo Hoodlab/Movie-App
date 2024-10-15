@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
@@ -38,7 +39,7 @@ import kotlinx.coroutines.delay
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    onMovieClick:(id:Int) -> Unit
+    onMovieClick: (id: Int) -> Unit
 ) {
     var isAutoScrolling by remember {
         mutableStateOf(true)
@@ -74,7 +75,10 @@ fun HomeScreen(
         }
     }
     AnimatedVisibility(visible = !state.isLoading) {
-        Box(modifier = modifier.fillMaxSize()) {
+        BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+            val boxHeight = maxHeight
+            val topItemHeight = boxHeight * .45f
+            val bodyItemHeight = boxHeight * .55f
             HorizontalPager(
                 state = pagerState,
                 contentPadding = PaddingValues(defaultPadding),
@@ -89,7 +93,7 @@ fun HomeScreen(
                         TopContent(
                             modifier = Modifier
                                 .align(Alignment.TopCenter)
-                                .heightIn(min = 300.dp),
+                                .heightIn(min = topItemHeight),
                             movie = state.movies[index],
                             onMovieClick = {
                                 onMovieClick(it)
@@ -100,7 +104,7 @@ fun HomeScreen(
                     TopContent(
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .heightIn(min = 300.dp),
+                            .heightIn(min = topItemHeight),
                         movie = state.movies[page],
                         onMovieClick = {
                             onMovieClick(it)
@@ -111,7 +115,7 @@ fun HomeScreen(
             BodyContent(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .heightIn(max = 430.dp),
+                    .heightIn(max = bodyItemHeight),
                 movies = state.movies,
                 onMovieClick = onMovieClick
             )
@@ -132,5 +136,5 @@ fun HomeScreen(
 @Preview(showSystemUi = true)
 @Composable
 private fun PrevHomeScreen() {
-    HomeScreen(){}
+    HomeScreen() {}
 }
