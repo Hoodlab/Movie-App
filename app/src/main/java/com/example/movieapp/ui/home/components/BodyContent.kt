@@ -2,7 +2,6 @@ package com.example.movieapp.ui.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,13 +21,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.movieapp.movie.domain.models.Movie
 import com.example.movieapp.ui.authentication.login.defaultPadding
 import com.example.movieapp.ui.authentication.login.itemSpacing
 
 @Composable
-fun BodyContent(modifier: Modifier = Modifier, movies: List<Movie>) {
+fun BodyContent(
+    modifier: Modifier = Modifier,
+    movies: List<Movie>,
+    onMovieClick: (Int) -> Unit,
+) {
     LazyColumn(modifier = modifier) {
         item {
             Card(
@@ -45,7 +47,9 @@ fun BodyContent(modifier: Modifier = Modifier, movies: List<Movie>) {
                     Icon(imageVector = Icons.Filled.PlayArrow, contentDescription = "Play")
                 }
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(itemSpacing),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(itemSpacing),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -63,11 +67,13 @@ fun BodyContent(modifier: Modifier = Modifier, movies: List<Movie>) {
                 }
                 LazyRow {
                     items(movies) {
-                        MovieCoverImage(movie = it)
+                        MovieCoverImage(movie = it, onMovieClick = onMovieClick)
                     }
                 }
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding( horizontal =  itemSpacing),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = itemSpacing),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -85,7 +91,7 @@ fun BodyContent(modifier: Modifier = Modifier, movies: List<Movie>) {
                 }
                 LazyRow {
                     items(movies) {
-                        MovieCoverImage(movie = it)
+                        MovieCoverImage(movie = it, onMovieClick = onMovieClick)
                     }
                 }
             }
@@ -96,6 +102,6 @@ fun BodyContent(modifier: Modifier = Modifier, movies: List<Movie>) {
 @Preview(showBackground = true)
 @Composable
 private fun PrevBodyContent() {
-  //  BodyContent()
+    //  BodyContent()
 }
 

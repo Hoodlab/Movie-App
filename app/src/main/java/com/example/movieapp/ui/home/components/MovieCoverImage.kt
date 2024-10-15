@@ -1,6 +1,6 @@
 package com.example.movieapp.ui.home.components
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -22,19 +21,16 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.movieapp.R
 import com.example.movieapp.movie.domain.models.Movie
-import com.example.movieapp.ui.authentication.login.defaultPadding
 import com.example.movieapp.ui.authentication.login.itemSpacing
 import com.example.movieapp.utils.K
 
 @Composable
-fun MovieCoverImage(modifier: Modifier = Modifier,movie: Movie) {
+fun MovieCoverImage(modifier: Modifier = Modifier, movie: Movie, onMovieClick: (Int) -> Unit) {
     val imgRequest = ImageRequest.Builder(LocalContext.current)
         .data("${K.BASE_IMAGE_URL}${movie.posterPath}")
         .crossfade(true)
@@ -43,9 +39,10 @@ fun MovieCoverImage(modifier: Modifier = Modifier,movie: Movie) {
         modifier = modifier
             .size(width = 150.dp, height = 250.dp)
             .padding(itemSpacing)
+            .clickable { onMovieClick(movie.id) }
     ) {
         AsyncImage(
-            model =imgRequest,
+            model = imgRequest,
             contentDescription = null,
             modifier = Modifier
                 .matchParentSize()
@@ -55,10 +52,15 @@ fun MovieCoverImage(modifier: Modifier = Modifier,movie: Movie) {
         )
         MovieCard(
             shapes = CircleShape,
-            modifier = Modifier.align(Alignment.TopEnd)
+            modifier = Modifier
+                .align(Alignment.TopEnd)
                 .padding(4.dp)
         ) {
-            Icon(imageVector = Icons.Default.Bookmark, contentDescription = "Bookmark", modifier = Modifier.padding(4.dp))
+            Icon(
+                imageVector = Icons.Default.Bookmark,
+                contentDescription = "Bookmark",
+                modifier = Modifier.padding(4.dp)
+            )
         }
         Surface(
             modifier = Modifier
@@ -81,5 +83,5 @@ fun MovieCoverImage(modifier: Modifier = Modifier,movie: Movie) {
 @Preview(showBackground = true)
 @Composable
 private fun PrevCoverImage() {
-   // MovieCoverImage()
+    // MovieCoverImage()
 }

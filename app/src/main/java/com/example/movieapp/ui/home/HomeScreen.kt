@@ -38,6 +38,7 @@ import kotlinx.coroutines.delay
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
+    onMovieClick:(id:Int) -> Unit
 ) {
     var isAutoScrolling by remember {
         mutableStateOf(true)
@@ -61,6 +62,17 @@ fun HomeScreen(
             }
         }
     }
+    Box {
+        AnimatedVisibility(
+            state.error != null
+        ) {
+            Text(
+                state.error ?: "unknown",
+                color = MaterialTheme.colorScheme.error,
+                maxLines = 2
+            )
+        }
+    }
     AnimatedVisibility(visible = !state.isLoading) {
         Box(modifier = modifier.fillMaxSize()) {
             HorizontalPager(
@@ -78,7 +90,10 @@ fun HomeScreen(
                             modifier = Modifier
                                 .align(Alignment.TopCenter)
                                 .heightIn(min = 300.dp),
-                            movie = state.movies[index]
+                            movie = state.movies[index],
+                            onMovieClick = {
+                                onMovieClick(it)
+                            }
                         )
                     }
                 } else {
@@ -86,7 +101,10 @@ fun HomeScreen(
                         modifier = Modifier
                             .align(Alignment.TopCenter)
                             .heightIn(min = 300.dp),
-                        movie = state.movies[page]
+                        movie = state.movies[page],
+                        onMovieClick = {
+                            onMovieClick(it)
+                        }
                     )
                 }
             }
@@ -94,7 +112,8 @@ fun HomeScreen(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .heightIn(max = 430.dp),
-                movies = state.movies
+                movies = state.movies,
+                onMovieClick = onMovieClick
             )
             AnimatedVisibility(
                 state.error != null
@@ -113,5 +132,5 @@ fun HomeScreen(
 @Preview(showSystemUi = true)
 @Composable
 private fun PrevHomeScreen() {
-    HomeScreen()
+    HomeScreen(){}
 }

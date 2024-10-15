@@ -11,5 +11,5 @@ interface MovieApiService {
     suspend fun fetchMovie(
         @Query("api_key") apiKey: String = BuildConfig.apiKey,
         @Query("include_adult") includeAdult: Boolean = false
-    ):MovieDto
+    ): MovieDto
 }

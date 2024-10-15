@@ -34,7 +34,7 @@ class MovieNavigationActions(
         }
     }
 
-    val navigateToFilmScreenWithArgs: (filmId: String) -> Unit = {
+    val navigateToFilmScreenWithArgs: (filmId: Int) -> Unit = {
         navController.navigate(
             Route.FilmScreen().getRouteWithArgs(id = it)
         ) {

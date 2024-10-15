@@ -1,6 +1,6 @@
 package com.example.movieapp.ui.home.components
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,10 +33,13 @@ import com.example.movieapp.movie.domain.models.Movie
 import com.example.movieapp.ui.authentication.login.defaultPadding
 import com.example.movieapp.ui.authentication.login.itemSpacing
 import com.example.movieapp.utils.K
-import kotlin.math.round
 
 @Composable
-fun TopContent(modifier: Modifier = Modifier, movie: Movie) {
+fun TopContent(
+    modifier: Modifier = Modifier,
+    movie: Movie,
+    onMovieClick: (id: Int) -> Unit
+) {
     val imgRequest = ImageRequest.Builder(LocalContext.current)
         .data("${K.BASE_IMAGE_URL}${movie.posterPath}")
         .crossfade(true)
@@ -44,6 +47,7 @@ fun TopContent(modifier: Modifier = Modifier, movie: Movie) {
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .clickable { onMovieClick(movie.id) }
     ) {
         AsyncImage(
             model = imgRequest,
