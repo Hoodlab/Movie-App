@@ -31,7 +31,7 @@ sealed class Route {
     }
 
     data class ActorScreen(
-        val route: String = "FilmScreen",
+        val route: String = "ActorScreen",
         val routeWithArgs: String = "$route/{${K.ACTOR_ID}}",
     ) : Route() {
         fun getRouteWithArgs(id: Int): String {

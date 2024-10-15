@@ -31,6 +31,7 @@ class DetailViewModel @Inject constructor(
     }
 
     private fun fetchMovieDetailById() = viewModelScope.launch {
+        Log.i("movieVM", "fetchMovieDetailById: $id")
         if (id == -1) {
             _detailState.update {
                 it.copy(isLoading = false, error = "Movie not found")
