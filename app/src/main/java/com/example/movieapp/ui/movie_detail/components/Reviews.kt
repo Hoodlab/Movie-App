@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.movieapp.movie_detail.domain.models.Review
 import com.example.movieapp.ui.authentication.login.itemSpacing
+import com.example.movieapp.ui.components.CollapsibleText
 import kotlin.math.round
 
 @Composable
@@ -46,7 +47,7 @@ fun ReviewItem(modifier: Modifier = Modifier, review: Review) {
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(itemSpacing))
-        Text(text = review.content, style = MaterialTheme.typography.bodyLarge)
+        CollapsibleText(text = review.content, style = MaterialTheme.typography.bodyLarge)
         Spacer(modifier = Modifier.height(itemSpacing))
         Row(
             horizontalArrangement = Arrangement.Center,
