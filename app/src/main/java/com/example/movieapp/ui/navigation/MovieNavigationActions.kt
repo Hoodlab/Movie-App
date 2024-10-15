@@ -39,7 +39,7 @@ class MovieNavigationActions(
             Route.FilmScreen().getRouteWithArgs(id = it)
         ) {
             launchSingleTop = true
-            popUpTo(navController.graph.findStartDestination().id) { inclusive = true }
+            popUpTo(navController.graph.findStartDestination().id) { inclusive = false }
         }
     }
     val navigateToActorScreenWithArgs: (actorId: String) -> Unit = {
@@ -47,7 +47,7 @@ class MovieNavigationActions(
             Route.ActorScreen().getRouteWithArgs(id = it)
         ) {
             launchSingleTop = true
-            popUpTo(navController.graph.findStartDestination().id) { inclusive = true }
+            popUpTo(navController.graph.findStartDestination().id) { inclusive = false }
         }
     }
 
