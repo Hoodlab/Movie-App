@@ -44,7 +44,7 @@ The **Movie App** is an Android application built with
 
 1. **Clone the Repository:**
     ```
-    git clone https://github.com/Hoodlab/Movie-App
+    git clone https://github.com/Hoodlab/Movie-App.git
     cd MovieApp
     ```
 
@@ -52,14 +52,19 @@ The **Movie App** is an Android application built with
     * Sign up for an API key from [TheMovieDb](https://www.themoviedb.org/).
     * In your project’s `local.properties` file, add the following:
       ```
-      api_key=YOUR_TMDB_API_KEY
+      apiKey=YOUR_TMDB_API_KEY
       ```
-    * The app will access this key via `BuildConfig.Api_key`.
+    * The app will access this key via `BuildConfig.apiKey`.
 
 3. **Set up Firebase:**
     * Create a Firebase project from the [Firebase Console](https://console.firebase.google.com/).
-    * Enable **Firebase Authentication**.
+    * Enable **Firebase Authentication** With Email and Password and Google Auth.
     * Download the `google-services.json` file and place it in the `app/` directory.
+    *Retrieve the WebClient secret key for Google Authentication from the [Firebase Console](https://console.firebase.google.com/).
+    * In your project’s `local.properties` file, add the following:
+      ```
+      clientSecret=YOUR_FIREBASE_GOOGLE_AUTH_WEB_SECRET
+      ```
 
 4. **Build and Run:**
     * Open the project in Android Studio.
